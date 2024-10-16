@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_firebase_ui_template/domain/infrastructure/todo_db.dart';
 import 'package:todo_firebase_ui_template/domain/infrastructure/user_model.dart';

@@ -26,11 +26,10 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
       appBar: AppBar(
         title: Text(
           'Welcome $userName',
-          style: TextStyle(fontSize: 23, color: Colors.white),
+          style: const TextStyle(fontSize: 23, color: Colors.white),
         ),
         backgroundColor: Colors.purple,
       ),
-
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -76,7 +75,12 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
                               if (_formKey.currentState!.validate()) {
                                 if (editFlag == false) {
                                   index = index + 1;
-                                  
+                                  TodoModel t = TodoModel(
+                                      id: 'id',
+                                      userId: 'userId',
+                                      todoName: taskController.text,
+                                      todoStatus: '0');
+                                  addTask(t);
                                   taskController.text = '';
                                 } else {
                                   setState(() {
@@ -156,8 +160,7 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
                             IconButton(
                                 onPressed: () {
                                   setState(() {
-                                    todoModelList.removeWhere((item) =>
-                                        item.id == todoModelList[index].id);
+                                    deleteTask(todoModelList[index].id);
                                   });
                                 },
                                 icon: const Icon(Icons.delete))
@@ -179,8 +182,10 @@ class _ScreenTodoHomeState extends State<ScreenTodoHome> {
 
   Future<void> loadUserName() async {
     globalusername = await getUserName(globalUserId);
+    await loadDatabase();
     setState(() {
       userName = globalusername;
+      todoModelList = globalTodoList;
     });
   }
 }

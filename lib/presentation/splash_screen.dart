@@ -52,6 +52,6 @@ class _ScreenSplashState extends State<ScreenSplash> {
   Future<void> splashNavigation() async {
     await Future.delayed(const Duration(seconds: 3));
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ScreenLogin()));
+        .push(MaterialPageRoute(builder: (context) => const ScreenLogin()));
   }
 }
